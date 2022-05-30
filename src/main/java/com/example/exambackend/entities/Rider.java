@@ -29,4 +29,10 @@ public class Rider {
     private int sprintPoints;
     private int totalTime;
     private String country;
+
+    public Rider(String name, int age, String country) {
+        this.name = name;
+        this.age = age;
+        this.country = country;
+    }
 }

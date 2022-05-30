@@ -37,4 +37,7 @@ public class RiderResponse {
     public static List<RiderResponse> RiderFromEntity(Set<Rider> riders){
         return riders.stream().map(rider -> new RiderResponse(rider,false)).collect(Collectors.toList());
     }
+    public static List<RiderResponse> RiderFromEntityUsingList(List<Rider> riders){
+        return riders.stream().map(rider -> new RiderResponse(rider,false)).collect(Collectors.toList());
+    }
 }

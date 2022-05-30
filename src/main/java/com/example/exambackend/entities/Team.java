@@ -20,11 +20,10 @@ public class Team {
     private String name;
 
     //A team has many riders
-    @OneToMany(mappedBy = "team", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "team", fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST ,CascadeType.MERGE})
     private Set<Rider> riders = new HashSet<>();
 
-    public Team(int id,String name){
-        this.id = id;
+    public Team(String name){
         this.name = name;
     }
 
@@ -32,4 +31,10 @@ public class Team {
         riders.add(rider);
     }
 
+    public void addRiders(Set<Rider> riders){
+        this.riders.addAll(riders);
+        for(Rider rider : riders){
+            rider.setTeam(this);
+        }
+    }
 }
