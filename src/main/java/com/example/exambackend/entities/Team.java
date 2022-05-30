@@ -21,7 +21,8 @@ public class Team {
     private String name;
 
     //A team has many riders
-    @OneToMany(mappedBy = "team", fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST ,CascadeType.MERGE})
+    @OneToMany(mappedBy = "team", fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL,orphanRemoval = true)
     private Set<Rider> riders = new HashSet<>();
 
     public Team(String name){

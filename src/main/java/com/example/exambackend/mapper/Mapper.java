@@ -4,7 +4,7 @@ import com.example.exambackend.DTO.RiderResponse;
 import com.example.exambackend.entities.Rider;
 
 public class Mapper {
-/*
+
     public RiderResponse toRiderResponse(Rider rider){
         RiderResponse riderResponse = new RiderResponse();
         riderResponse.setId(rider.getId());
@@ -16,7 +16,4 @@ public class Mapper {
         riderResponse.setTotalTime(rider.getTotalTime());
         return riderResponse;
     }
-
- */
-
 }

@@ -2,6 +2,9 @@ package com.example.exambackend.entities;
 
 import com.example.exambackend.DTO.RiderRequest;
 import lombok.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+import org.hibernate.engine.internal.Cascade;
 
 import javax.persistence.*;
 
@@ -21,7 +24,7 @@ public class Rider {
     private int age;
 
     //Many riders for one team
-    @ManyToOne
+    @ManyToOne()
     private Team team;
 
     private int mountainPoints;

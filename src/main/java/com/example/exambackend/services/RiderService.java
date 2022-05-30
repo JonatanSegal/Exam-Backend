@@ -4,21 +4,23 @@ import com.example.exambackend.DTO.RiderRequest;
 import com.example.exambackend.DTO.RiderResponse;
 import com.example.exambackend.entities.Rider;
 import com.example.exambackend.entities.Team;
+import com.example.exambackend.mapper.Mapper;
 import com.example.exambackend.repositories.RiderRepository;
 import com.example.exambackend.repositories.TeamRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Set;
 
 @Service
 public class RiderService {
     RiderRepository riderRepository;
     TeamRepository teamRepository;
     TeamService teamService;
+   // Mapper mapper;
 
 
-    public RiderService(RiderRepository riderRepository, TeamRepository teamRepository, TeamService teamService) {
+    public RiderService(RiderRepository riderRepository, TeamRepository teamRepository,
+                        TeamService teamService) {
         this.riderRepository = riderRepository;
         this.teamRepository = teamRepository;
         this.teamService = teamService;
@@ -36,13 +38,11 @@ public class RiderService {
         teamRepository.save(team);
         return new RiderResponse(newRider,true);
     }
-/*
+
     public RiderResponse getRider(int id) throws Exception{
         Rider riderToFind = riderRepository.findById(id).orElseThrow(()-> new Exception("No rider with that name"));
-        return mapper.toRiderResponse(riderToFind);
+        return new RiderResponse(riderToFind,false);
     }
-
- */
 
     public RiderResponse editRider(RiderRequest body, int id) throws Exception{
         Rider riderToEdit = riderRepository.findById(id).orElseThrow(()-> new Exception("Could not find rider"));

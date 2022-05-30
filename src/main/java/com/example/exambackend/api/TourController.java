@@ -26,20 +26,27 @@ public class TourController {
         return riderService.getAllRiders();
     }
 
+    @GetMapping("/{id}")
+    public RiderResponse getARider(@PathVariable int id) throws Exception {
+        return riderService.getRider(id);
+    }
+
     @PostMapping
     public RiderResponse addRider(@RequestBody RiderRequest body) throws Exception {
         return riderService.addRider(body);
     }
     @PatchMapping("/{id}")
     public RiderResponse updateRider(@RequestBody RiderRequest body, @PathVariable int id) throws Exception {
-        return riderService.editRider(body,id);
+       return riderService.editRider(body,id);
     }
-
-
 
     @GetMapping("/teams")
     public List<TeamResponse> getAllTeams(){
         return teamService.getAllTeams();
+    }
+    @DeleteMapping("/{id}")
+    public void deleteRider(@PathVariable int id){
+        riderService.deleteRider(id);
     }
 
 
