@@ -61,6 +61,19 @@ public class RiderService {
     public List<RiderResponse> getRidersForTeam(String teamName){
         return RiderResponse.RiderFromEntityUsingList(riderRepository.findRiderByTeamName(teamName));
     }
+
+    public RiderResponse shirt(String name){
+        if(name.contains("YellowShirt")){
+            return yellowShirt();
+        }if(name.contains("GreenShirt")){
+            return greenShirt();
+        } if(name.contains("RedDotShirt")){
+            return redDotShirt();
+        }if(name.contains("WhiteShirt")){
+            return whiteShirt();
+        }
+        return null;
+    }
     public RiderResponse yellowShirt(){
         for (RiderResponse rider : getAllRiders()) {
             if (rider.getTotalTime() == fastestTime()) {
@@ -148,7 +161,6 @@ public class RiderService {
         }
         return timePoint;
     }
-
 
     public void deleteRider(int id){
         riderRepository.deleteById(id);

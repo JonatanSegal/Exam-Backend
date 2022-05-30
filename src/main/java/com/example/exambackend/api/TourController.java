@@ -30,22 +30,9 @@ public class TourController {
     public RiderResponse getARider(@PathVariable int id) throws Exception {
         return riderService.getRider(id);
     }
-    @GetMapping("/YellowShirt")
-    public RiderResponse getYellowShirt(){
-        return riderService.yellowShirt();
-    }
-    @GetMapping("/GreenShirt")
-    public RiderResponse getGreenShirt(){
-        return riderService.greenShirt();
-    }
-    @GetMapping("/RedDotShirt")
-    public RiderResponse getRedDotShirt(){
-        return riderService.redDotShirt();
-    }
-
-    @GetMapping("/WhiteShirt")
-    public RiderResponse getWhiteShirt(){
-        return riderService.whiteShirt();
+    @GetMapping("/{shirtName}/rider")
+    public RiderResponse getShirt(@PathVariable String shirtName){
+        return riderService.shirt(shirtName);
     }
 
     @PostMapping
