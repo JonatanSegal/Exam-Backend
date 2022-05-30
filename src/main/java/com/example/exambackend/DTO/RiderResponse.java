@@ -32,7 +32,7 @@ public class RiderResponse {
         this.age = rider.getAge();
         this.country = rider.getCountry();
         this.team = rider.getTeam().getName();
-        this.mountainPoints = getMountainPoints();
+        this.mountainPoints = rider.getMountainPoints();
         this.sprintPoints = rider.getSprintPoints();
         this.totalTime = rider.getTotalTime();
     }
