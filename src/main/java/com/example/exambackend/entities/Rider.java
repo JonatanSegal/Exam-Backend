@@ -43,4 +43,13 @@ public class Rider {
         this.age = request.getAge();
         this.country = request.getCountry();
     }
+
+    public Rider(String name, int age, int mountainPoints, int sprintPoints, int totalTime, String country) {
+        this.name = name;
+        this.age = age;
+        this.mountainPoints = mountainPoints;
+        this.sprintPoints = sprintPoints;
+        this.totalTime = totalTime;
+        this.country = country;
+    }
 }

@@ -9,6 +9,7 @@ import com.example.exambackend.repositories.RiderRepository;
 import com.example.exambackend.repositories.TeamRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -56,6 +57,44 @@ public class RiderService {
         riderRepository.save(riderToEdit);
         return new RiderResponse(riderToEdit,false);
     }
+
+    public List<RiderResponse> getRidersForTeam(String teamName){
+        return RiderResponse.RiderFromEntityUsingList(riderRepository.findRiderByTeamName(teamName));
+    }
+
+    public List<RiderResponse> ridersUnder26(){
+        List<Rider> allRiders = riderRepository.findAll();
+        List<Rider> ridersUnder26 = new ArrayList<>();
+        for(int i = 0; i<allRiders.size(); i++){
+            if(allRiders.get(i).getAge() < 26){
+                ridersUnder26.add(allRiders.get(i));
+                }
+            }
+        return RiderResponse.RiderFromEntityUsingList(ridersUnder26);
+    }
+
+    public int lowestTimeUnder26(){
+        List<RiderResponse> validRiders = ridersUnder26();
+        int timePoint = 10000000;
+        for (RiderResponse validRider : validRiders) {
+            if (validRider.getTotalTime() < timePoint) {
+                timePoint = validRider.getTotalTime();
+            }
+        }
+        return timePoint;
+    }
+
+    public RiderResponse whiteShirt(){
+        List<RiderResponse> validRiders = ridersUnder26();
+       for (RiderResponse validRider : validRiders) {
+            if (validRider.getTotalTime() == lowestTimeUnder26()) {
+                return validRider;
+            }
+        }
+        return null;
+    }
+
+
 
     public void deleteRider(int id){
         riderRepository.deleteById(id);

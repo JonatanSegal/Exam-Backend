@@ -31,6 +31,11 @@ public class TourController {
         return riderService.getRider(id);
     }
 
+    @GetMapping("/WhiteShirt")
+    public RiderResponse getWhiteShirt(){
+        return riderService.whiteShirt();
+    }
+
     @PostMapping
     public RiderResponse addRider(@RequestBody RiderRequest body) throws Exception {
         return riderService.addRider(body);
@@ -44,6 +49,12 @@ public class TourController {
     public List<TeamResponse> getAllTeams(){
         return teamService.getAllTeams();
     }
+
+    @GetMapping("/{name}/riders")
+    public List<RiderResponse> getTeamRiders(@PathVariable String name){
+        return riderService.getRidersForTeam(name);
+    }
+
     @DeleteMapping("/{id}")
     public void deleteRider(@PathVariable int id){
         riderService.deleteRider(id);
