@@ -15,10 +15,12 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 public class TeamResponse {
 
+    private int id;
     private String name;
     private List<RiderResponse> riderResponses;
 
     public TeamResponse(Team team, boolean includeAll){
+        this.id = team.getId();
         this.name = team.getName();
         this.riderResponses = RiderResponse.RiderFromEntity(team.getRiders());
     }

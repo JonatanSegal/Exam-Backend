@@ -14,6 +14,8 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 public class RiderResponse {
 
+    private int id;
+
     private String name;
     private int age;
     private String country;
@@ -25,6 +27,7 @@ public class RiderResponse {
     private int totalTime;
 
     public RiderResponse(Rider rider, boolean includeAll) {
+        this.id = rider.getId();
         this.name = rider.getName();
         this.age = rider.getAge();
         this.country = rider.getCountry();

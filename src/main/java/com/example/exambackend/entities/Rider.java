@@ -1,10 +1,7 @@
 package com.example.exambackend.entities;
 
 import com.example.exambackend.DTO.RiderRequest;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -14,6 +11,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Getter
 @Setter
+
 public class Rider {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

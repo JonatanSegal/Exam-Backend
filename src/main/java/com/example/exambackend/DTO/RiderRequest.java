@@ -7,6 +7,10 @@ public class RiderRequest {
 
     private String name;
     private int age;
-    private String Country;
+    private String country;
+    private int team;
+    private int mountainPoints;
+    private int sprintPoints;
+    private int totalTime;
 
 }

@@ -27,9 +27,14 @@ public class TourController {
     }
 
     @PostMapping
-    public RiderResponse addRider(@RequestBody RiderRequest body){
+    public RiderResponse addRider(@RequestBody RiderRequest body) throws Exception {
         return riderService.addRider(body);
     }
+    @PatchMapping("/{id}")
+    public RiderResponse updateRider(@RequestBody RiderRequest body, @PathVariable int id) throws Exception {
+        return riderService.editRider(body,id);
+    }
+
 
 
     @GetMapping("/teams")

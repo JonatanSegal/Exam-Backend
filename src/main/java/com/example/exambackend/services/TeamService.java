@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class TeamService {
+public class TeamService  {
     TeamRepository teamRepository;
 
     public TeamService(TeamRepository teamRepository){
@@ -20,4 +20,8 @@ public class TeamService {
         return TeamResponse.TeamFromEntity(teamEntities);
     }
 
+    public Team getTeam(int teamName) throws Exception{
+        Team teamToFind =  teamRepository.findById(teamName).orElseThrow(()-> new Exception("No team with that name"));
+        return teamToFind;
+    }
 }
