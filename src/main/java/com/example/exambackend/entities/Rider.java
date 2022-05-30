@@ -1,5 +1,6 @@
 package com.example.exambackend.entities;
 
+import com.example.exambackend.DTO.RiderRequest;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -34,5 +35,11 @@ public class Rider {
         this.name = name;
         this.age = age;
         this.country = country;
+    }
+
+    public Rider(RiderRequest request){
+        this.name = request.getName();
+        this.age = request.getAge();
+        this.country = request.getCountry();
     }
 }

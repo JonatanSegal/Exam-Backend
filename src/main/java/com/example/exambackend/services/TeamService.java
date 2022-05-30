@@ -20,5 +20,4 @@ public class TeamService {
         return TeamResponse.TeamFromEntity(teamEntities);
     }
 
-
 }

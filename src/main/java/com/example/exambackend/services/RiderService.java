@@ -1,5 +1,6 @@
 package com.example.exambackend.services;
 
+import com.example.exambackend.DTO.RiderRequest;
 import com.example.exambackend.DTO.RiderResponse;
 import com.example.exambackend.entities.Rider;
 import com.example.exambackend.repositories.RiderRepository;
@@ -19,6 +20,11 @@ public class RiderService {
     public List<RiderResponse> getAllRiders(){
         List<Rider> riderEntities = riderRepository.findAll();
         return  RiderResponse.RiderFromEntityUsingList(riderEntities);
+    }
+
+    public RiderResponse addRider(RiderRequest body){
+        Rider newRider = riderRepository.save(new Rider(body));
+        return new RiderResponse(newRider,true);
     }
 
 }
