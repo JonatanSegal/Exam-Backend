@@ -61,6 +61,71 @@ public class RiderService {
     public List<RiderResponse> getRidersForTeam(String teamName){
         return RiderResponse.RiderFromEntityUsingList(riderRepository.findRiderByTeamName(teamName));
     }
+    public RiderResponse yellowShirt(){
+        for (RiderResponse rider : getAllRiders()) {
+            if (rider.getTotalTime() == fastestTime()) {
+                return rider;
+            }
+        }
+        return null;
+    }
+    public RiderResponse greenShirt(){
+        for (RiderResponse rider : getAllRiders()) {
+            if (rider.getMountainPoints() == mountainPoints()) {
+                return rider;
+            }
+        }
+        return null;
+    }
+    public RiderResponse redDotShirt(){
+        for (RiderResponse rider : getAllRiders()) {
+            if (rider.getSprintPoints() == sprintPoints() ) {
+                return rider;
+            }
+        }
+        return null;
+    }
+
+
+    public RiderResponse whiteShirt(){
+        List<RiderResponse> validRiders = ridersUnder26();
+       for (RiderResponse validRider : validRiders) {
+            if (validRider.getTotalTime() == lowestTimeUnder26()) {
+                return validRider;
+            }
+        }
+        return null;
+    }
+    public int fastestTime(){
+        List<Rider> allRiders = riderRepository.findAll();
+        int startTime = 100000000;
+        for(Rider allRider: allRiders){
+            if(allRider.getTotalTime() < startTime){
+                startTime = allRider.getTotalTime();
+            }
+        }
+        return startTime;
+    }
+    public int sprintPoints(){
+        List<Rider> allRiders = riderRepository.findAll();
+        int base = 0;
+        for(Rider allRider: allRiders){
+            if(allRider.getSprintPoints() > base){
+                base = allRider.getSprintPoints();
+            }
+        }
+        return base;
+    }
+    public int mountainPoints(){
+        List<Rider> allRiders = riderRepository.findAll();
+        int base = 0;
+        for(Rider allRider: allRiders){
+            if(allRider.getMountainPoints() > base){
+                base = allRider.getMountainPoints();
+            }
+        }
+        return base;
+    }
 
     public List<RiderResponse> ridersUnder26(){
         List<Rider> allRiders = riderRepository.findAll();
@@ -68,8 +133,8 @@ public class RiderService {
         for(int i = 0; i<allRiders.size(); i++){
             if(allRiders.get(i).getAge() < 26){
                 ridersUnder26.add(allRiders.get(i));
-                }
             }
+        }
         return RiderResponse.RiderFromEntityUsingList(ridersUnder26);
     }
 
@@ -83,17 +148,6 @@ public class RiderService {
         }
         return timePoint;
     }
-
-    public RiderResponse whiteShirt(){
-        List<RiderResponse> validRiders = ridersUnder26();
-       for (RiderResponse validRider : validRiders) {
-            if (validRider.getTotalTime() == lowestTimeUnder26()) {
-                return validRider;
-            }
-        }
-        return null;
-    }
-
 
 
     public void deleteRider(int id){
