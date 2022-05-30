@@ -1,12 +1,18 @@
 package com.example.exambackend.entities;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 
 
 @Entity
 @NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 public class Rider {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,4 +28,5 @@ public class Rider {
     private int mountainPoints;
     private int sprintPoints;
     private int totalTime;
+    private String country;
 }
